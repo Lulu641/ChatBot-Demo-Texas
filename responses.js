@@ -1,3 +1,6 @@
+// responses.js
+
+// Full prompt-responses
 const fullResponses = [
   { prompt: "hello", response: "Yo howdy partner! Nice to see ya today" },
   { prompt: "hi", response: "Hey there! How's it goin" },
@@ -72,32 +75,10 @@ const fullResponses = [
   { prompt: "hello there", response: "Hello partner! Ready for some Texas tips" },
   { prompt: "howdy there", response: "Howdy partner! Hope you're havin a good day" },
   { prompt: "yo yo", response: "Yo yo partner! Let's talk Texas" },
-  { prompt: "hey hey", response: "Hey hey partner! What's up" },
-
-  // Include all the prompts from your prompt list as individual fullResponses
-  { prompt: "Conserve water", response: "Take shorter showers and fix leaks to save water" },
-  { prompt: "Pick up litter", response: "Always pick up litter when you see it Keep Texas clean" },
-  { prompt: "Recycle plastics", response: "Recycle plastics properly to reduce waste and protect wildlife" },
-  { prompt: "Recycle aluminum cans", response: "Put aluminum cans in recycling bins It helps conserve resources" },
-  { prompt: "Turn off lights when not in use", response: "Save energy by turning off lights when you leave a room" },
-  { prompt: "Protect Texas wildlife", response: "Respect animal habitats and never disturb wildlife" },
-  { prompt: "Use reusable bags", response: "Bring reusable bags when shopping and reduce plastic waste" },
-  { prompt: "Plant native Texas plants", response: "Plant native flowers and trees to support the local ecosystem" },
-  { prompt: "Save energy at home", response: "Use energy-efficient appliances and unplug unused electronics" },
-  { prompt: "Support Texas farmers", response: "Buy local produce and help support Texas farmers" },
-  { prompt: "Avoid polluting rivers", response: "Never dump chemicals or trash in rivers Keep water clean" },
-  { prompt: "Keep beaches clean", response: "Pick up trash at beaches and encourage others to do the same" },
-  { prompt: "Volunteer in parks", response: "Join park cleanups and community service to protect nature" },
-  { prompt: "Use less electricity", response: "Switch off appliances and lights when not needed" },
-  { prompt: "Reduce food waste", response: "Only take what you can eat and compost leftovers" },
-  { prompt: "Keep air clean", response: "Avoid burning trash and reduce emissions when driving" },
-  { prompt: "Use public transportation", response: "Take buses, trains, or carpool to reduce pollution" },
-  { prompt: "Drive less", response: "Walk or bike when possible It helps the environment" },
-  { prompt: "Compost food scraps", response: "Turn food scraps into compost for your garden" },
-  { prompt: "Report wildfires", response: "Call authorities if you see a wildfire Do not try to put it out alone" },
-  { prompt: "Respect nature trails", response: "Stay on designated paths to protect plants and wildlife" }
+  { prompt: "hey hey", response: "Hey hey partner! What's up" }
 ];
-// Texas responses with proper punctuation and slang
+
+// Keywords fallback
 const texasResponses = [
   { keywords: ["hello", "hi", "hey", "hiya", "howdy", "sup", "yo", "wassup"], response: "Yo, howdy partner! How ya doin today?" },
   { keywords: ["bro", "dude", "man"], response: "Hey bro! What's up? Hope your day is going great." },
@@ -144,21 +125,20 @@ const texasSuggestions = [
   "Would you like tips on planting native flowers?"
 ];
 
-
 // Main function
 function getResponse(userInput) {
   if (!userInput) return "Please type something";
 
   const normalized = userInput.toLowerCase().replace(/[.!?]/g,'').trim();
 
-  // 1. Check fullResponses first (exact prompt match)
+  // 1. Check fullResponses first (exact match)
   for (let entry of fullResponses) {
-    if (normalized.includes(entry.prompt.toLowerCase())) {
+    if (normalized === entry.prompt.toLowerCase()) {
       return entry.response;
     }
   }
 
-  // 2. Check texasResponses keywords
+  // 2. Check keywords fallback
   for (let entry of texasResponses) {
     for (let kw of entry.keywords) {
       if (normalized.includes(kw)) {
@@ -167,7 +147,7 @@ function getResponse(userInput) {
     }
   }
 
-  // 3. Fallback - partially understood
+  // 3. Partially understood fallback
   const words = normalized.split(' ').slice(0,10).join(' ');
   if (words) {
     return `Sorry. I am not sure about "${words}". Please pick from the prompts below or try asking differently.`;
