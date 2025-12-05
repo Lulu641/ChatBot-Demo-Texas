@@ -12,39 +12,18 @@ const suggestionResponses = {
   "How do I support local farmers?": "Buy local produce at farmers' markets or grocery stores to support Texas agriculture."
 };
 
-// ------------------------- RESPONSE FUNCTION (updated) -------------------------
+// ------------------------- RESPONSE FUNCTION (STRICT SUGGESTIONS ONLY) -------------------------
 function getResponse(userInput) {
   if (!userInput) return "Please type something";
 
   const normalized = userInput.trim();
 
-  // 0. Check suggestionResponses first
+  // Only respond if the input exactly matches a suggestion prompt
   if (suggestionResponses[normalized]) {
     return suggestionResponses[normalized];
   }
 
-  // 1. Check exact matches from fullResponses
-  const lower = normalized.toLowerCase();
-  for (let entry of fullResponses) {
-    if (lower.includes(entry.prompt.toLowerCase())) {
-      return entry.response;
-    }
-  }
-
-  // 2. Check keywords in texasResponses
-  for (let entry of texasResponses) {
-    for (let kw of entry.keywords) {
-      if (lower.includes(kw)) {
-        return entry.response;
-      }
-    }
-  }
-
-  // 3. Partial understanding fallback
-  const words = lower.split(' ').slice(0,10).join(' ');
-  if (words) {
-    return `Sorry. I am not sure about "${words}". Please pick from the prompts below or try asking differently.`;
-  }
-
-  return "Sorry. I am not sure what you meant. Please pick from the prompts below or try asking differently.";
+  // Otherwise, force fallback
+  return `Sorry. Please pick from the suggestions below or type one exactly: \n${Object.keys(suggestionResponses).join("\n")}`;
 }
+
