@@ -1,28 +1,102 @@
-// responses.js
+const fullResponses = [
+  { prompt: "hello", response: "Yo howdy partner! Nice to see ya today" },
+  { prompt: "hi", response: "Hey there! How's it goin" },
+  { prompt: "hey", response: "Hey friend! Ready to learn some Texas tips" },
+  { prompt: "i am doing great", response: "That's awesome! Keep that good energy rollin" },
+  { prompt: "i'm tired", response: "Aww hang in there! Hope you get some rest soon" },
+  { prompt: "lol", response: "Haha glad you find that funny Texans love a good laugh" },
+  { prompt: "bro", response: "Yo bro! How's your day lookin" },
+  { prompt: "how was your day", response: "Mine's been chillin! How about yours" },
+  { prompt: "what else can Texans do to help the environment", response: "They can volunteer at parks, plant native trees, and pick up litter whenever they see it" },
+  { prompt: "want another Texas tip", response: "Sure thing! Using reusable bags and cutting down on plastic really helps" },
+  { prompt: "wth", response: "Whoa that's wild! You good tho" },
+  { prompt: "omg", response: "OMG totally! Tell me more what's happenin" },
+  { prompt: "i'm happy", response: "Sweet! Keep that smile on, Texans love good vibes" },
+  { prompt: "good morning", response: "Mornin partner! Hope your day starts off awesome" },
+  { prompt: "good evening", response: "Evenin! Kick back and relax, Texas style" },
+  { prompt: "howdy", response: "Howdy! Ready for some Texas tips today" },
+  { prompt: "sup", response: "Sup partner! Hope you're havin a chill day" },
+  { prompt: "i'm sad", response: "Aww I'm sorry to hear that Take a deep breath and take care of yourself" },
+  { prompt: "i'm excited", response: "Yay that's awesome! Keep that energy goin" },
+  { prompt: "good job", response: "Thanks! Texans appreciate the kind words" },
+  { prompt: "thank you", response: "Anytime partner! Happy to help" },
+  { prompt: "thanks", response: "No problem! Keep Texas lookin beautiful" },
+  { prompt: "i'm hungry", response: "Grab some grub! Texas BBQ is always a winner" },
+  { prompt: "i'm cold", response: "Bundle up partner! Stay warm out there" },
+  { prompt: "i'm hot", response: "Stay hydrated! Texas sun can be brutal sometimes" },
+  { prompt: "good afternoon", response: "Afternoon partner! Hope you're having a smooth day" },
+  { prompt: "good night", response: "Night partner! Rest well and dream of Texas bluebonnets" },
+  { prompt: "see ya", response: "Catch you later! Keep Texas beautiful and safe" },
+  { prompt: "bye", response: "Bye partner! Don't forget to care for the environment" },
+  { prompt: "good to see you", response: "Good to see you too! Texans love friendly faces" },
+  { prompt: "i am bored", response: "Try a Texas cleanup or plant a flower to pass the time" },
+  { prompt: "i am stressed", response: "Take a walk outside and enjoy Texas nature for a bit" },
+  { prompt: "what's up", response: "Not much partner! Just sharing Texas tips with folks" },
+  { prompt: "how's it going", response: "Going great! How about you partner" },
+  { prompt: "what are you doing", response: "Just helping Texans learn how to care for their state" },
+  { prompt: "any tips", response: "Sure! Pick up litter, plant native flowers, and conserve water" },
+  { prompt: "need advice", response: "Always happy to help! Start by turning off unused lights and using reusable bags" },
+  { prompt: "what can i do", response: "Many things! Volunteer in parks, plant trees, and respect wildlife" },
+  { prompt: "cool", response: "Glad you think so partner! Texas life is full of surprises" },
+  { prompt: "awesome", response: "Yup! Texans know how to make things awesome" },
+  { prompt: "fantastic", response: "Glad to hear it! Keep that energy goin" },
+  { prompt: "happy", response: "That's great! Smile wide partner" },
+  { prompt: "sad", response: "Aww partner I'm here for ya Take a deep breath" },
+  { prompt: "excited", response: "Yay! Love that energy Keep it rollin" },
+  { prompt: "lolol", response: "Haha that's hilarious partner Texans love a laugh" },
+  { prompt: "hey there", response: "Hey there partner! How's your day goin" },
+  { prompt: "good vibes", response: "Keep those good vibes rollin partner Texans appreciate it" },
+  { prompt: "i am lost", response: "Don't worry partner Stay calm and take one step at a time" },
+  { prompt: "confused", response: "It's okay partner We can figure it out together" },
+  { prompt: "need help", response: "Absolutely partner! What do you need help with" },
+  { prompt: "what should i do", response: "You could volunteer, plant native flowers, or pick up litter" },
+  { prompt: "yo", response: "Yo partner! How ya doin today" },
+  { prompt: "sup dude", response: "Sup dude! Ready to learn some Texas tips" },
+  { prompt: "hey bro", response: "Hey bro! How's your day lookin" },
+  { prompt: "i am fine", response: "Glad to hear it partner Keep up the good vibes" },
+  { prompt: "i'm good", response: "Awesome partner! Keep Texas lookin beautiful" },
+  { prompt: "i'm ok", response: "Good to hear partner Let's keep movin" },
+  { prompt: "good day", response: "Hope your day is goin great partner" },
+  { prompt: "great day", response: "Yup! Texas days can be amazing partner" },
+  { prompt: "bad day", response: "Aww partner Sorry to hear that Take it easy" },
+  { prompt: "i am tired lol", response: "Haha take a break partner Rest up and recharge" },
+  { prompt: "i'm bored lol", response: "Try volunteerin in a park partner It's fun and helpful" },
+  { prompt: "omg wow", response: "OMG partner! That sounds wild Tell me more" },
+  { prompt: "omg lol", response: "Haha OMG partner Texans love a laugh" },
+  { prompt: "thanks a lot", response: "Anytime partner Happy to help" },
+  { prompt: "thank you very much", response: "You're welcome partner! Keep up the great work" },
+  { prompt: "no worries", response: "No worries partner! Texans always help each other" },
+  { prompt: "see you later", response: "See ya partner! Take care of Texas" },
+  { prompt: "later bro", response: "Catch ya later partner! Keep Texas beautiful" },
+  { prompt: "take care", response: "Will do partner You too Keep up the good vibes" },
+  { prompt: "hello there", response: "Hello partner! Ready for some Texas tips" },
+  { prompt: "howdy there", response: "Howdy partner! Hope you're havin a good day" },
+  { prompt: "yo yo", response: "Yo yo partner! Let's talk Texas" },
+  { prompt: "hey hey", response: "Hey hey partner! What's up" },
 
-// Updated response logic: use keywords only if input is partially understandable, else default response
-function getResponse(userInput) {
-  const input = userInput.toLowerCase();
-
-  let matched = false;
-  for (let entry of texasResponses) {
-    if (entry.keywords.length === 0) continue;
-    for (let kw of entry.keywords) {
-      if (input.includes(kw)) {
-        matched = true;
-        return entry.response;
-      }
-    }
-  }
-
-  if (input.trim() === "" || !matched) {
-    return "Sorry. I am not sure what you meant. Please pick from the prompts below or try asking differently.";
-  } else {
-    const words = input.split(' ').slice(0,10).join(' ');
-    return `Sorry. I am not sure about ${words}. Please pick from the prompts below or try asking differently.`;
-  }
-}
-
+  // Include all the prompts from your prompt list as individual fullResponses
+  { prompt: "Conserve water", response: "Take shorter showers and fix leaks to save water" },
+  { prompt: "Pick up litter", response: "Always pick up litter when you see it Keep Texas clean" },
+  { prompt: "Recycle plastics", response: "Recycle plastics properly to reduce waste and protect wildlife" },
+  { prompt: "Recycle aluminum cans", response: "Put aluminum cans in recycling bins It helps conserve resources" },
+  { prompt: "Turn off lights when not in use", response: "Save energy by turning off lights when you leave a room" },
+  { prompt: "Protect Texas wildlife", response: "Respect animal habitats and never disturb wildlife" },
+  { prompt: "Use reusable bags", response: "Bring reusable bags when shopping and reduce plastic waste" },
+  { prompt: "Plant native Texas plants", response: "Plant native flowers and trees to support the local ecosystem" },
+  { prompt: "Save energy at home", response: "Use energy-efficient appliances and unplug unused electronics" },
+  { prompt: "Support Texas farmers", response: "Buy local produce and help support Texas farmers" },
+  { prompt: "Avoid polluting rivers", response: "Never dump chemicals or trash in rivers Keep water clean" },
+  { prompt: "Keep beaches clean", response: "Pick up trash at beaches and encourage others to do the same" },
+  { prompt: "Volunteer in parks", response: "Join park cleanups and community service to protect nature" },
+  { prompt: "Use less electricity", response: "Switch off appliances and lights when not needed" },
+  { prompt: "Reduce food waste", response: "Only take what you can eat and compost leftovers" },
+  { prompt: "Keep air clean", response: "Avoid burning trash and reduce emissions when driving" },
+  { prompt: "Use public transportation", response: "Take buses, trains, or carpool to reduce pollution" },
+  { prompt: "Drive less", response: "Walk or bike when possible It helps the environment" },
+  { prompt: "Compost food scraps", response: "Turn food scraps into compost for your garden" },
+  { prompt: "Report wildfires", response: "Call authorities if you see a wildfire Do not try to put it out alone" },
+  { prompt: "Respect nature trails", response: "Stay on designated paths to protect plants and wildlife" }
+];
 // Texas responses with proper punctuation and slang
 const texasResponses = [
   { keywords: ["hello", "hi", "hey", "hiya", "howdy", "sup", "yo", "wassup"], response: "Yo, howdy partner! How ya doin today?" },
@@ -69,3 +143,36 @@ const texasSuggestions = [
   "Do you want to hear a fun fact about Texas nature?",
   "Would you like tips on planting native flowers?"
 ];
+
+
+// Main function
+function getResponse(userInput) {
+  if (!userInput) return "Please type something";
+
+  const normalized = userInput.toLowerCase().replace(/[.!?]/g,'').trim();
+
+  // 1. Check fullResponses first (exact prompt match)
+  for (let entry of fullResponses) {
+    if (normalized.includes(entry.prompt.toLowerCase())) {
+      return entry.response;
+    }
+  }
+
+  // 2. Check texasResponses keywords
+  for (let entry of texasResponses) {
+    for (let kw of entry.keywords) {
+      if (normalized.includes(kw)) {
+        return entry.response;
+      }
+    }
+  }
+
+  // 3. Fallback - partially understood
+  const words = normalized.split(' ').slice(0,10).join(' ');
+  if (words) {
+    return `Sorry. I am not sure about "${words}". Please pick from the prompts below or try asking differently.`;
+  }
+
+  // 4. Final fallback
+  return "Sorry. I am not sure what you meant. Please pick from the prompts below or try asking differently.";
+}
