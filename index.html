@@ -141,12 +141,41 @@ body {
     <div id="suggestions"></div>
   </div>
 </div>
-<script src="responses.js"></script>
+
 <script>
+// ------------------------- SUGGESTIONS & RESPONSES -------------------------
+const texasSuggestions = [
+  "How do I keep Texas clean?",
+  "What can I do to help wildlife?",
+  "How do I save water at home?",
+  "How can I reduce trash in my neighborhood?",
+  "What are simple ways to protect rivers and lakes?",
+  "How can I help pollinators like bees?",
+  "What should I plant to support local nature?",
+  "How can I volunteer in parks?",
+  "What can I do to reduce air pollution?",
+  "How do I support local farmers?"
+];
+
+const suggestionResponses = {
+  "How do I keep Texas clean?": "Pick up litter, plant native flowers, and conserve water.",
+  "What can I do to help wildlife?": "Volunteer in parks, plant trees, and respect wildlife.",
+  "How do I save water at home?": "Take shorter showers and fix leaks to save water.",
+  "How can I reduce trash in my neighborhood?": "Recycle properly and pick up litter whenever you see it.",
+  "What are simple ways to protect rivers and lakes?": "Never dump chemicals, pick up trash, and respect water habitats.",
+  "How can I help pollinators like bees?": "Plant flowers, avoid pesticides, and support local beekeepers.",
+  "What should I plant to support local nature?": "Native Texas plants like bluebonnets, oak trees, and wildflowers.",
+  "How can I volunteer in parks?": "Join park cleanups or community service events to help local nature.",
+  "What can I do to reduce air pollution?": "Carpool, bike, or use public transport and reduce unnecessary energy use.",
+  "How do I support local farmers?": "Buy local produce and support farmers’ markets."
+};
+
+// ------------------------- DOM ELEMENTS -------------------------
 const chatBox = document.getElementById('chatBox');
 const input = document.getElementById('userInput');
 const suggestionsDiv = document.getElementById('suggestions');
 
+// ------------------------- MESSAGES -------------------------
 function addMessage(role, text) {
   const div = document.createElement('div');
   div.className = role === 'user' ? 'userBubble' : 'aiBubble';
@@ -155,6 +184,16 @@ function addMessage(role, text) {
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
+// ------------------------- RESPONSE -------------------------
+function getResponse(userInput) {
+  const normalized = userInput.trim();
+  if (suggestionResponses[normalized]) {
+    return suggestionResponses[normalized];
+  }
+  return `Please pick from the suggestions below:\n${texasSuggestions.join("\n")}`;
+}
+
+// ------------------------- SEND MESSAGE -------------------------
 function sendMessage() {
   const message = input.value.trim();
   if(message === '') return;
@@ -167,10 +206,10 @@ function sendMessage() {
   }, 400);
 }
 
+// ------------------------- SHOW SUGGESTIONS -------------------------
 function showSuggestions() {
   suggestionsDiv.innerHTML = '';
-  const picks = texasSuggestions.slice(0, 8);
-  picks.forEach(p => {
+  texasSuggestions.slice(0,8).forEach(p => {
     const btn = document.createElement('button');
     btn.textContent = p;
     btn.onclick = () => {
@@ -181,12 +220,13 @@ function showSuggestions() {
   });
 }
 
+// ------------------------- ENTER KEY -------------------------
 input.addEventListener('keypress', function(e) {
   if(e.key === 'Enter') sendMessage();
 });
 
-// Start conversation with AI greeting
-addMessage('ai', 'Howdy partner I am your Texas Care Bot Ready to share tips and suggestions to take care of Texas');
+// ------------------------- START CONVERSATION -------------------------
+addMessage('ai', 'Howdy partner! I am your Texas Care Bot. Ready to share tips and suggestions to take care of Texas.');
 showSuggestions();
 </script>
 </body>
