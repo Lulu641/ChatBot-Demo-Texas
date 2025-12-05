@@ -93,18 +93,20 @@ const texasResponses = [
 ];
 
 // Suggestions
-const texasSuggestions = [
-  "What else can Texans do to help the environment?",
-  "Want to hear another way to protect Texas nature?",
-  "Would you like another Texas conservation tip?",
-  "Do you want to learn another Texas friendly habit?",
-  "Ready for another idea to help keep Texas clean?",
-  "Want another simple way to care for Texas?",
-  "Want a suggestion to keep Texas beautiful?",
-  "Want another helpful Texas habit?",
-  "Do you want to hear a fun fact about Texas nature?",
-  "Would you like tips on planting native flowers?"
+// Suggestions that act like real user questions/prompts
+let texasSuggestions = [
+  "How do I keep Texas clean?",
+  "What can I do to help wildlife?",
+  "How do I save water at home?",
+  "How can I reduce trash in my neighborhood?",
+  "What are simple ways to protect rivers and lakes?",
+  "How can I help pollinators like bees?",
+  "What should I plant to support local nature?",
+  "How can I volunteer in parks?",
+  "What can I do to reduce air pollution?",
+  "How do I compost food scraps at home?"
 ];
+
 
 // Main function
 function getResponse(userInput) {
