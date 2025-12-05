@@ -6,105 +6,124 @@
 <title>Take Care of Texas Chatbot</title>
 <style>
 body {
-  font-family: Arial;
-  background: #8fd3f4;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #1aa7a1, #57d3cc);
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  color: #00332f;
 }
-.chatbox {
-  width: 420px;
+#chatContainer {
+  width: 480px;
+  max-width: 90%;
   background: white;
-  border-radius: 22px;
-  border: 3px solid black;
-  padding: 20px;
-  box-shadow: 0 0 14px rgba(0,0,0,0.3);
+  border-radius: 25px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.25);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  border: 3px solid #064f4a;
 }
-.chatbox h2 {
-  text-align: center;
-}
-.messages {
-  height: 300px;
-  overflow-y: auto;
-  border: 2px solid black;
-  border-radius: 12px;
-  padding: 10px;
-  background: #f7f7f7;
-  margin-bottom: 15px;
-}
-.bubble {
-  padding: 8px 12px;
-  background: #e0f7ff;
-  border: 1px solid #a7dfee;
-  border-radius: 12px;
-  margin: 8px 0;
-}
-.inputRow {
-  display: flex;
-  gap: 8px;
-}
-input {
-  flex: 1;
-  padding: 10px;
-  border: 2px solid black;
-  border-radius: 10px;
-}
-button {
-  padding: 10px 14px;
-  background: #0aa399;
+#header {
+  background: #0d726b;
   color: white;
+  padding: 20px;
+  font-size: 1.4rem;
+  text-align: center;
+  font-weight: bold;
+}
+#chatBox {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background: #f3fffe;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.userBubble {
+  align-self: flex-end;
+  background: #c0f7f3;
+  padding: 12px 18px;
+  border-radius: 18px;
+  border: 2px solid #0aa399;
+  max-width: 80%;
+}
+.aiBubble {
+  align-self: flex-start;
+  background: #00bfff;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 18px;
+  border: 2px solid #0d726b;
+  max-width: 80%;
+}
+#inputArea {
+  display: flex;
+  padding: 15px;
+  border-top: 2px solid #b6f1ec;
+  background: #e3fffc;
+  gap: 10px;
+}
+#inputArea input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 2px solid #0aa399;
+  font-size: 1rem;
+}
+#inputArea button {
+  padding: 10px 16px;
+  background: #0aa399;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
+  color: white;
   cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+#inputArea button:hover {
+  background: #0d726b;
+  transform: scale(1.05);
 }
 </style>
 </head>
 <body>
-
-<div class="chatbox">
-  <h2>Take Care of Texas</h2>
-  <div class="messages" id="messages"></div>
-  <div class="inputRow">
-    <input id="userInput" placeholder="Type here">
+<div id="chatContainer">
+  <div id="header">Take Care of Texas</div>
+  <div id="chatBox"></div>
+  <div id="inputArea">
+    <input type="text" id="userInput" placeholder="Type your message here" />
     <button onclick="sendMessage()">Send</button>
   </div>
 </div>
-
 <script src="responses.js"></script>
 <script>
-const box = document.getElementById('messages');
+const chatBox = document.getElementById('chatBox');
 const input = document.getElementById('userInput');
 
-function addMessage(text) {
-  const d = document.createElement('div');
-  d.className = 'bubble';
-  d.textContent = text;
-  box.appendChild(d);
-  box.scrollTop = box.scrollHeight;
+function addMessage(role, text) {
+  const div = document.createElement('div');
+  div.className = role === 'user' ? 'userBubble' : 'aiBubble';
+  div.textContent = text;
+  chatBox.appendChild(div);
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
 
 function sendMessage() {
-  const t = input.value.trim();
-  if (!t) return;
-  addMessage("You said " + t);
-  input.value = "";
-  respond(t);
+  const message = input.value.trim();
+  if(message === '') return;
+  addMessage('user', message);
+  input.value = '';
+  const response = getResponse(message);
+  setTimeout(() => addMessage('ai', response), 400);
 }
 
-function respond(text) {
-  const r = texasResponses[Math.floor(Math.random() * texasResponses.length)];
-  const s = texasSuggestions[Math.floor(Math.random() * texasSuggestions.length)];
-  addMessage(r);
-  addMessage(s);
-}
-
-// Optional: trigger welcome message
-addMessage("Howdy! Type anything or click send to learn how to take care of Texas");
+input.addEventListener('keypress', function(e) {
+  if(e.key === 'Enter') sendMessage();
+});
 </script>
-
 </body>
 </html>
