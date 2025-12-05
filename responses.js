@@ -1,6 +1,6 @@
 // responses.js
 
-// Full responses - exact or partial matches
+// ------------------------- FULL RESPONSES -------------------------
 const fullResponses = [
   { prompt: "hello", response: "Yo howdy partner! Nice to see ya today" },
   { prompt: "hi", response: "Hey there! How's it goin" },
@@ -10,8 +10,10 @@ const fullResponses = [
   { prompt: "lol", response: "Haha glad you find that funny Texans love a good laugh" },
   { prompt: "bro", response: "Yo bro! How's your day lookin" },
   { prompt: "how was your day", response: "Mine's been chillin! How about yours" },
-  { prompt: "want another Texas tip", response: "Sure thing! Using reusable bags and cutting down on plastic really helps" },
   { prompt: "what else can Texans do to help the environment", response: "They can volunteer at parks, plant native trees, and pick up litter whenever they see it" },
+  { prompt: "want another Texas tip", response: "Sure thing! Using reusable bags and cutting down on plastic really helps" },
+  { prompt: "wth", response: "Whoa that's wild! You good tho" },
+  { prompt: "omg", response: "OMG totally! Tell me more what's happenin" },
   { prompt: "i'm happy", response: "Sweet! Keep that smile on, Texans love good vibes" },
   { prompt: "good morning", response: "Mornin partner! Hope your day starts off awesome" },
   { prompt: "good evening", response: "Evenin! Kick back and relax, Texas style" },
@@ -73,10 +75,33 @@ const fullResponses = [
   { prompt: "hello there", response: "Hello partner! Ready for some Texas tips" },
   { prompt: "howdy there", response: "Howdy partner! Hope you're havin a good day" },
   { prompt: "yo yo", response: "Yo yo partner! Let's talk Texas" },
-  { prompt: "hey hey", response: "Hey hey partner! What's up" }
+  { prompt: "hey hey", response: "Hey hey partner! What's up" },
+
+  // Environmental tips
+  { prompt: "Conserve water", response: "Take shorter showers and fix leaks to save water" },
+  { prompt: "Pick up litter", response: "Always pick up litter when you see it Keep Texas clean" },
+  { prompt: "Recycle plastics", response: "Recycle plastics properly to reduce waste and protect wildlife" },
+  { prompt: "Recycle aluminum cans", response: "Put aluminum cans in recycling bins It helps conserve resources" },
+  { prompt: "Turn off lights when not in use", response: "Save energy by turning off lights when you leave a room" },
+  { prompt: "Protect Texas wildlife", response: "Respect animal habitats and never disturb wildlife" },
+  { prompt: "Use reusable bags", response: "Bring reusable bags when shopping and reduce plastic waste" },
+  { prompt: "Plant native Texas plants", response: "Plant native flowers and trees to support the local ecosystem" },
+  { prompt: "Save energy at home", response: "Use energy-efficient appliances and unplug unused electronics" },
+  { prompt: "Support Texas farmers", response: "Buy local produce and help support Texas farmers" },
+  { prompt: "Avoid polluting rivers", response: "Never dump chemicals or trash in rivers Keep water clean" },
+  { prompt: "Keep beaches clean", response: "Pick up trash at beaches and encourage others to do the same" },
+  { prompt: "Volunteer in parks", response: "Join park cleanups and community service to protect nature" },
+  { prompt: "Use less electricity", response: "Switch off appliances and lights when not needed" },
+  { prompt: "Reduce food waste", response: "Only take what you can eat and compost leftovers" },
+  { prompt: "Keep air clean", response: "Avoid burning trash and reduce emissions when driving" },
+  { prompt: "Use public transportation", response: "Take buses, trains, or carpool to reduce pollution" },
+  { prompt: "Drive less", response: "Walk or bike when possible It helps the environment" },
+  { prompt: "Compost food scraps", response: "Turn food scraps into compost for your garden" },
+  { prompt: "Report wildfires", response: "Call authorities if you see a wildfire Do not try to put it out alone" },
+  { prompt: "Respect nature trails", response: "Stay on designated paths to protect plants and wildlife" }
 ];
 
-// Keywords - for slang/partial understanding
+// ------------------------- TEXAS RESPONSES KEYWORDS -------------------------
 const texasResponses = [
   { keywords: ["hello", "hi", "hey", "hiya", "howdy", "sup", "yo", "wassup"], response: "Yo, howdy partner! How ya doin today?" },
   { keywords: ["bro", "dude", "man"], response: "Hey bro! What's up? Hope your day is going great." },
@@ -89,11 +114,26 @@ const texasResponses = [
   { keywords: ["i am good", "i'm good", "i am great", "i'm great", "i am fine", "i'm fine", "doing good", "doing well"], response: "Glad to hear that! Keep up the good vibes, and enjoy your Texas day." },
   { keywords: ["thank you", "thanks", "thx", "much appreciated"], response: "No problem! Happy to help Texans anytime, for sure." },
   { keywords: ["bye", "goodbye", "see ya", "later", "farewell", "cya"], response: "Catch ya later! Keep Texas beautiful and safe, take care." },
-  { keywords: [], response: "Sorry. I am not sure what you meant. Please pick from the prompts below, or try asking differently." }
+  { keywords: ["water", "save water", "hydration"], response: "Short showers, fixing leaks, and using less water really help. Every drop counts in Texas." },
+  { keywords: ["recycle", "recycling", "trash", "garbage", "waste"], response: "Recycle cans, bottles, and cardboard. It keeps Texas clean and green." },
+  { keywords: ["plants", "trees", "gardening", "flowers", "flora"], response: "Plant native trees and flowers, or a little garden. It helps wildlife, and looks awesome!" },
+  { keywords: ["energy", "electricity", "lights", "power"], response: "Turn off lights when not in use, and use energy efficient appliances. Saves power and money." },
+  { keywords: ["litter", "cleanup", "garbage"], response: "Pick up litter whenever you see it. Keeps public spaces clean, and safe." },
+  { keywords: ["help", "volunteer", "assist", "aid"], response: "Volunteer at parks or cleanups. It makes a huge positive impact on the community." },
+  { keywords: ["animals", "wildlife", "creatures"], response: "Respect wildlife habitats. It keeps Texas diverse and thriving." },
+  { keywords: ["fire", "wildfire", "burn"], response: "Report wildfires immediately. Protects forests, homes, and animals." },
+  { keywords: ["pollution", "air", "smoke", "emissions"], response: "Reduce emissions, avoid burning trash, and support clean energy. Keeps the air fresh." },
+  { keywords: ["food", "waste", "compost"], response: "Compost food scraps, or donate extra. Reduces waste, and helps Texas resources." },
+  { keywords: ["beach", "river", "lake", "waterways"], response: "Keep water sources clean. Protects nature, and makes recreational areas safe." },
+  { keywords: ["transportation", "drive", "car", "bike", "walk", "commute"], response: "Carpool, bike, or use public transport. Less pollution, more smiles." },
+  { keywords: ["clothes", "fashion", "apparel", "wardrobe"], response: "Buy secondhand, or donate old clothes. Less waste, more happy Texans." },
+  { keywords: ["education", "learn", "teach", "inform"], response: "Teach or learn conservation habits. Every bit helps the environment." },
+  { keywords: ["camping", "hiking", "trail", "outdoors"], response: "Stay on trails, and clean up after yourself. Nature stays beautiful." },
+  { keywords: ["bee", "pollinator", "insect"], response: "Plant flowers, avoid pesticides, and support beekeepers. Pollinators thrive." },
+  { keywords: ["donate", "support", "contribute"], response: "Support local conservation groups. Helps protect Texas for everyone." }
 ];
 
-// Suggestions
-// Suggestions that act like real user questions/prompts
+// ------------------------- SUGGESTION PROMPTS -------------------------
 let texasSuggestions = [
   "How do I keep Texas clean?",
   "What can I do to help wildlife?",
@@ -104,24 +144,23 @@ let texasSuggestions = [
   "What should I plant to support local nature?",
   "How can I volunteer in parks?",
   "What can I do to reduce air pollution?",
-  "How do I compost food scraps at home?"
+  "How do I support local farmers?"
 ];
 
-
-// Main function
+// ------------------------- RESPONSE FUNCTION -------------------------
 function getResponse(userInput) {
   if (!userInput) return "Please type something";
 
   const normalized = userInput.toLowerCase().replace(/[.!?]/g,'').trim();
 
-  // 1. Check fullResponses - partial match
+  // 1. Check exact matches from fullResponses
   for (let entry of fullResponses) {
     if (normalized.includes(entry.prompt.toLowerCase())) {
       return entry.response;
     }
   }
 
-  // 2. Check keywords
+  // 2. Check keywords in texasResponses
   for (let entry of texasResponses) {
     for (let kw of entry.keywords) {
       if (normalized.includes(kw)) {
@@ -130,19 +169,27 @@ function getResponse(userInput) {
     }
   }
 
-  // 3. If input matches any suggestion, respond with a generic tip
-  for (let suggestion of texasSuggestions) {
-    if (normalized.includes(suggestion.toLowerCase().replace(/[.!?]/g,''))) {
-      return "Here's a tip! Pick up litter, plant native flowers, or conserve water. Keep Texas beautiful!";
-    }
-  }
-
-  // 4. Partial understanding fallback
+  // 3. Partial understanding fallback
   const words = normalized.split(' ').slice(0,10).join(' ');
   if (words) {
     return `Sorry. I am not sure about "${words}". Please pick from the prompts below or try asking differently.`;
   }
 
-  // 5. Final fallback
   return "Sorry. I am not sure what you meant. Please pick from the prompts below or try asking differently.";
+}
+
+// ------------------------- SUGGESTION PICKER -------------------------
+function pickSuggestion() {
+  if (texasSuggestions.length === 0) return null;
+
+  const index = Math.floor(Math.random() * texasSuggestions.length);
+  const suggestion = texasSuggestions[index];
+  texasSuggestions.splice(index,1); // Remove after use
+  return suggestion;
+}
+
+// ------------------------- EXPORTS (for Node/Browser) -------------------------
+// If using in a browser, you can just include this file in a <script> tag
+if (typeof module !== "undefined") {
+  module.exports = { getResponse, pickSuggestion, fullResponses, texasResponses };
 }
