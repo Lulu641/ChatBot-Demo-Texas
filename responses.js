@@ -1,6 +1,6 @@
 // responses.js
 
-// Expanded responses with many greetings and improved fallback handling
+// Enhanced responses with slang abbreviations full sentences and proper grammar
 function getResponse(userInput) {
   const input = userInput.toLowerCase();
 
@@ -15,33 +15,32 @@ function getResponse(userInput) {
   return `Sorry. I am not sure about ${words}. Please pick from the prompts below or try asking differently.`;
 }
 
-// Expanded greetings and conversational responses
 const texasResponses = [
-  { keywords: ["hello", "hi", "hey", "hiya", "howdy", "sup", "greetings"], response: "Howdy partner How are you doing today" },
-  { keywords: ["good morning", "morning", "rise and shine"], response: "Good morning Hope your day is amazing" },
-  { keywords: ["good evening", "evening", "night"], response: "Good evening Hope your evening is peaceful" },
-  { keywords: ["how are you", "how was your day", "how is it going", "how are things"], response: "I am doing well thanks for asking How is your day going" },
-  { keywords: ["i am good", "i'm good", "i am great", "i'm great", "i am fine", "i'm fine", "i am doing well"], response: "Glad to hear that Keep up the good vibes in Texas" },
-  { keywords: ["thank you", "thanks", "much appreciated"], response: "No problem happy to help Texans" },
-  { keywords: ["bye", "goodbye", "see ya", "later", "farewell"], response: "See you around Keep Texas beautiful" },
-  { keywords: ["water", "save water", "hydration"], response: "Shorter showers fixing leaks and mindful usage help conserve water in Texas" },
-  { keywords: ["recycle", "recycling", "trash", "garbage", "waste"], response: "Recycling plastic cans cardboard and electronics keeps Texas clean" },
-  { keywords: ["plants", "trees", "gardening", "flowers"], response: "Planting native trees flowers and maintaining gardens supports Texas wildlife" },
-  { keywords: ["energy", "electricity", "lights", "power"], response: "Turning off lights and using energy efficient appliances saves electricity in Texas" },
-  { keywords: ["litter", "trash", "garbage", "cleanup"], response: "Picking up litter and keeping public spaces clean makes Texas beautiful and safe" },
-  { keywords: ["help", "volunteer", "assist", "aid"], response: "Volunteering at parks or cleanups has a positive impact in Texas" },
-  { keywords: ["animals", "wildlife", "creatures"], response: "Respecting wildlife habitats helps Texas maintain biodiversity" },
-  { keywords: ["fire", "wildfire", "burn"], response: "Reporting wildfires immediately protects forests homes and animals in Texas" },
-  { keywords: ["pollution", "air", "smoke", "emissions"], response: "Reducing emissions avoiding burning trash and supporting clean energy helps Texas air quality" },
-  { keywords: ["food", "waste", "compost"], response: "Composting food scraps donating excess and avoiding waste helps Texas resources" },
-  { keywords: ["beach", "river", "lake", "waterways"], response: "Keeping water sources clean protects Texas nature and recreational areas" },
-  { keywords: ["transportation", "drive", "car", "bike", "walk", "commute"], response: "Carpooling biking and using public transportation reduces pollution in Texas" },
-  { keywords: ["clothes", "fashion", "apparel", "wardrobe"], response: "Buying secondhand sustainable clothing and donating old clothes reduces waste in Texas" },
-  { keywords: ["education", "learn", "teach", "inform"], response: "Teaching others about conservation and sustainable habits helps Texas environment" },
-  { keywords: ["camping", "hiking", "trail", "outdoors"], response: "Staying on trails cleaning up after yourself and respecting nature preserves Texas beauty" },
-  { keywords: ["bee", "pollinator", "insect"], response: "Planting flowers avoiding pesticides and supporting beekeepers helps pollinators in Texas" },
-  { keywords: ["donate", "support", "contribute"], response: "Supporting local conservation efforts organizations and cleanups preserves Texas nature" },
-  { keywords: [], response: "That is a great choice Texans can always do that to help the environment" }
+  { keywords: ["hello", "hi", "hey", "hiya", "howdy", "sup", "greetings", "yo", "wassup"], response: "Yo howdy partner! How ya doin today?" },
+  { keywords: ["good morning", "morning", "rise and shine"], response: "Mornin y'all! Hope ur day is lookin bright and chill" },
+  { keywords: ["good evening", "evening", "night"], response: "Evenin! Hope ur night is peaceful and relaxed" },
+  { keywords: ["how are you", "how was your day", "how is it going", "how are things", "sup"], response: "I’m doin great thanks! How’s your day goin so far?" },
+  { keywords: ["i am good", "i'm good", "i am great", "i'm great", "i am fine", "i'm fine", "i am doing well", "doing good", "doing well"], response: "Glad to hear that! Keep up the good vibes in Texas. Everything’s lookin positive" },
+  { keywords: ["thank you", "thanks", "thx", "much appreciated"], response: "No prob! Happy to help Texans anytime." },
+  { keywords: ["bye", "goodbye", "see ya", "later", "farewell", "cya"], response: "Catch ya later! Keep Texas beautiful and safe." },
+  { keywords: ["water", "save water", "hydration"], response: "Short showers and fixin leaks really help conserve water. Every drop counts in Texas." },
+  { keywords: ["recycle", "recycling", "trash", "garbage", "waste"], response: "Recycle stuff like cans bottles and cardboard. It keeps Texas clean and green." },
+  { keywords: ["plants", "trees", "gardening", "flowers", "flora"], response: "Plant native trees flowers or a lil garden. Helps wildlife and looks awesome." },
+  { keywords: ["energy", "electricity", "lights", "power"], response: "Turn off lights when not usin em and use energy efficient appliances. Saves power and money." },
+  { keywords: ["litter", "trash", "garbage", "cleanup"], response: "Pick up litter whenever ya see it. Keeps public spaces clean and safe." },
+  { keywords: ["help", "volunteer", "assist", "aid"], response: "Volunteer at parks or cleanups. Makes a huge positive impact." },
+  { keywords: ["animals", "wildlife", "creatures"], response: "Respect wildlife habitats. It keeps Texas diverse and thriving." },
+  { keywords: ["fire", "wildfire", "burn"], response: "Report wildfires immediately. Protects forests homes and animals." },
+  { keywords: ["pollution", "air", "smoke", "emissions"], response: "Reduce emissions avoid burnin trash and support clean energy. Keeps the air fresh." },
+  { keywords: ["food", "waste", "compost"], response: "Compost food scraps or donate extra. Reduces waste and helps Texas resources." },
+  { keywords: ["beach", "river", "lake", "waterways"], response: "Keep water sources clean. Protects nature and makes recreational areas safe." },
+  { keywords: ["transportation", "drive", "car", "bike", "walk", "commute"], response: "Carpool bike or use public transport. Less pollution, more smiles." },
+  { keywords: ["clothes", "fashion", "apparel", "wardrobe"], response: "Buy secondhand or donate old clothes. Less waste, more happy Texans." },
+  { keywords: ["education", "learn", "teach", "inform"], response: "Teach or learn conservation habits. Every bit helps the environment." },
+  { keywords: ["camping", "hiking", "trail", "outdoors"], response: "Stay on trails, clean up after yourself. Nature stays beautiful." },
+  { keywords: ["bee", "pollinator", "insect"], response: "Plant flowers, avoid pesticides and support beekeepers. Pollinators thrive." },
+  { keywords: ["donate", "support", "contribute"], response: "Support local conservation groups. Helps protect Texas for everyone." },
+  { keywords: [], response: "That’s a great choice! Texans can always do that to help the environment. Keep it up!" }
 ];
 
 // Suggestions for prompts to keep conversation going
